@@ -1,11 +1,14 @@
 package com.macenabraga.cursomc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class CategoriaDomain implements Serializable { 		
@@ -13,9 +16,13 @@ public class CategoriaDomain implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Integer idCategoria;
-	String nomeCategoria;
+	private Integer idCategoria;
+	private String nomeCategoria;
 	
+	@ManyToMany (mappedBy = "categorias")
+	private List<ProdutoDomain>  produtos = new ArrayList<>();
+	
+
 	public CategoriaDomain() {		
 	}
 	
@@ -39,6 +46,15 @@ public class CategoriaDomain implements Serializable {
 
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
+	}
+	
+
+	public List<ProdutoDomain> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<ProdutoDomain> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
