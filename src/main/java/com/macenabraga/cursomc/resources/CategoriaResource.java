@@ -24,6 +24,6 @@ public class CategoriaResource {
 		
 		CategoriaDomain  obj = service.buscaPorId(id); // chamada do metodo buscaPor id
 		
-		return ResponseEntity.ok() .body(obj.getNomeCategoria());
+		return ResponseEntity.ok() .body(obj);
 	}
  }
